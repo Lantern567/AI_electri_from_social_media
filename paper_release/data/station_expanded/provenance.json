@@ -1,0 +1,4 @@
+{
+  "mode": "station-level pooling (461 real stations as NNLS basis)",
+  "scopes": "L0 home-country stations / L1 region stations / L2 continent stations / L3 all 461"
+}

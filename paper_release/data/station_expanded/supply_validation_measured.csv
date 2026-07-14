@@ -1,0 +1,5 @@
+series,n_hours,hourly_r,diurnal_r,peak_hour_model_local,peak_hour_meas_local,peak_hour_offset_h,season_r
+DE PV,8760,0.944,0.964,13,12,1,0.991
+DE WIND,8760,0.681,0.905,23,21,2,0.949
+GB PV,8758,0.941,0.958,13,12,1,0.985
+GB WIND,8758,0.942,0.93,16,17,-1,0.979

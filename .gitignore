@@ -1,0 +1,17 @@
+# This repository publishes only the curated manuscript package.
+# The broader local research workspace remains on disk but is not tracked.
+/*
+
+!/.gitignore
+!/README.md
+!/pyproject.toml
+!/uv.lock
+!/paper_release/
+!/paper_release/**
+
+# Local/generated files inside the release package
+paper_release/**/__pycache__/
+paper_release/**/*.py[cod]
+paper_release/**/.DS_Store
+paper_release/**/_preview/
+

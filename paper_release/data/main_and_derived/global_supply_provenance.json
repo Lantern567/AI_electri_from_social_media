@@ -1,0 +1,12 @@
+{
+  "supply_source": "WRI Global Power Plant Database (locations+capacity) + Open-Meteo ERA5 hourly weather",
+  "cf_models": {
+    "pv": "GHI/1000 * (1+gamma*(Tcell-25)); PVWatts/GSEE-style",
+    "wind": "smoothed IEC power curve on wind_speed_100m, x1.2 bias correction"
+  },
+  "n_supply_countries": 105,
+  "n_demand_countries": 104,
+  "power_scopes": "nested geographic reachability L0 home / L1 region / L2 continent / L3 global",
+  "transmission_efficiency": 0.92,
+  "note": "31-country HVDC corridor list dropped (incompatible with global pool); scopes are nested geographic upper bounds."
+}

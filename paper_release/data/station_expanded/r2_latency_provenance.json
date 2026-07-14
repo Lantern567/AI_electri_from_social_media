@@ -1,0 +1,29 @@
+{
+  "design": "R2 v2: x=latency tolerance tau(ms, RTT-gated), y=routable fraction phi; supply national; same-hour routing, no temporal deferral",
+  "tau_ms": [
+    50,
+    100,
+    150,
+    200,
+    300,
+    500
+  ],
+  "phi": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
+  "reach_km": {
+    "50": 0,
+    "100": 3143,
+    "150": 6714,
+    "200": 10286,
+    "300": 17429,
+    "500": 31714
+  },
+  "rtt_model": "2*(km/200 + 20ms)*1.4 (Luo&Yang; Azure-measured P50 cross-validation)",
+  "metric": "uncovered share U on routed demand vs home national portfolio"
+}

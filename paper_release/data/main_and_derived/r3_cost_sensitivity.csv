@@ -1,0 +1,19 @@
+cell,axis,variant,elec_median,store_median
+"local (tau=50, phi=0)",sizing percentile,P90,119.1,42.6
+"local (tau=50, phi=0)",sizing percentile,P95,124.9,47.4
+"local (tau=50, phi=0)",sizing percentile,P99,141.8,54.6
+"local (tau=50, phi=0)",sizing percentile,P100,161.3,70.0
+"local (tau=50, phi=0)",Li/LDES crossover,cheaper-of (base),124.9,47.4
+"local (tau=50, phi=0)",Li/LDES crossover,Li-ion only,152.3,72.2
+"local (tau=50, phi=0)",Li/LDES crossover,LDES only,124.9,47.4
+"local (tau=50, phi=0)",Li/LDES crossover,LDES cost x0.5,117.2,40.4
+"local (tau=50, phi=0)",Li/LDES crossover,LDES cost x1.5,132.8,54.8
+"global (tau=500, phi=1)",sizing percentile,P90,105.5,29.5
+"global (tau=500, phi=1)",sizing percentile,P95,112.3,35.2
+"global (tau=500, phi=1)",sizing percentile,P99,129.5,45.0
+"global (tau=500, phi=1)",sizing percentile,P100,147.9,60.1
+"global (tau=500, phi=1)",Li/LDES crossover,cheaper-of (base),112.3,35.2
+"global (tau=500, phi=1)",Li/LDES crossover,Li-ion only,138.8,54.6
+"global (tau=500, phi=1)",Li/LDES crossover,LDES only,112.3,35.2
+"global (tau=500, phi=1)",Li/LDES crossover,LDES cost x0.5,106.1,29.7
+"global (tau=500, phi=1)",Li/LDES crossover,LDES cost x1.5,118.2,40.8

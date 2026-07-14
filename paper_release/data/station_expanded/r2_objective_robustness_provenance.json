@@ -1,0 +1,11 @@
+{
+  "compare": "NNLS L2 projection + post-hoc equal-energy rescale (paper) vs direct L1 min-uncovered LP with equal-energy hard constraint (floor)",
+  "same_basis_as": "analyze_cfe_r2_waveform_routing.py",
+  "n_countries": 104,
+  "median_pct": {
+    "dom_nnls": 41.8324060140106,
+    "dom_lp": 40.80857392440437,
+    "rt_nnls": 12.71421177151815,
+    "rt_lp": 12.369998533038459
+  }
+}

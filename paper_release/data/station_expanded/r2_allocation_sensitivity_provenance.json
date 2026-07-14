@@ -1,0 +1,19 @@
+{
+  "purpose": "due-diligence range for routing benefit under a physically finite shared surplus budget",
+  "variants": {
+    "A": "independent non-rival pool (headline upper bound)",
+    "B": "shared finite budget, proportional rationing (neutral)",
+    "C": "shared finite budget, priority smallest-first (optimistic median)",
+    "D": "shared finite budget, proportional, receivers=all 104 countries",
+    "E": "shared finite budget, capacity(MW)-weighted; also reports capacity-weighted mean"
+  },
+  "reach": "global, tau=500 ms (worst case for double-counting)",
+  "phi": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ]
+}
