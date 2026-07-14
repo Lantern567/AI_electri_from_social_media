@@ -2,6 +2,8 @@
 
 Paths are relative to `paper_release/`.
 
+The complete stage-by-stage script list is provided in `CODE_INVENTORY.md`.
+
 | Paper item | Analysis / fitting script | Principal data | Frozen output |
 |---|---|---|---|
 | Fig. 1, domestic mismatch | `scripts/analyze_cfe_global_sites_stations.py`; `scripts/plot_cfe_geographic_portfolio_ai.py` | `data/main_and_derived/`; `data/station_expanded/` | `figures/fig1_national_mismatch.{png,pdf}` |
