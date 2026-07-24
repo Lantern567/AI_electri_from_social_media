@@ -4,6 +4,9 @@
 
 !/.gitignore
 !/README.md
+!/LICENSE
+!/DATA_LICENSE.md
+!/CITATION.cff
 !/pyproject.toml
 !/uv.lock
 !/paper_release/
@@ -14,4 +17,5 @@ paper_release/**/__pycache__/
 paper_release/**/*.py[cod]
 paper_release/**/.DS_Store
 paper_release/**/_preview/
+paper_release/scripts/_*.csv
 

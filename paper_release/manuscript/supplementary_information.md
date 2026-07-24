@@ -1,6 +1,8 @@
 # Supplementary Information
 
-This document is the Supplementary Information for the main paper *Earth’s rotation and human rhythms cap hourly wind-and-solar matching for interactive computing*. Throughout, we adopt the finalized framing of the main text — the geographic lever routes **compute load across longitudes over the internet** to regions that currently hold a clean surplus (supply is fixed to the home country, with each country still using its own wind and solar), along two axes—latency tolerance $\tau$ (milliseconds, gating the reachable range by round-trip time) and routable fraction $\varphi$ (the share of load that can be served off-site); the full electricity-supply cost comprises generation, firming storage and ancillary services, and excludes inter-regional transmission. Sections S0–S8 document the empirical fits, sensitivity analyses and cross-validation behind the AI workload parameters used in Result 3 (Methods 4.5); Sections S9–S14 document the supply-side and routing mechanisms underpinning Results 1–2 — the construction and validation of capacity factors, the mathematical formulation of home-country portfolio optimization, the round-trip-time model validated against measured Azure latency, the country sample and cloud-region availability, the storage cost conversion, and the robustness of the supply and routing assumptions.
+> Readable text snapshot. The authoritative submitted file is `supplementary_information_submission.docx`.
+
+This document is the Supplementary Information for the main paper *Chasing wind and sun narrows but does not close the data-centre clean-power gap*. Throughout, we adopt the finalized framing of the main text — the geographic lever routes **compute load across longitudes over the internet** to regions that currently hold a clean surplus (supply is fixed to the home country, with each country still using its own wind and solar), along two axes—latency tolerance $\tau$ (milliseconds, gating the reachable range by round-trip time) and routable fraction $\varphi$ (the share of load that can be served off-site); the full electricity-supply cost comprises generation, firming storage and ancillary services, and excludes inter-regional transmission. Sections S0–S8 document the empirical fits, sensitivity analyses and cross-validation behind the AI workload parameters used in Result 3 (Methods 4.5); Sections S9–S14 document the supply-side and routing mechanisms underpinning Results 1–2 — the construction and validation of capacity factors, the mathematical formulation of home-country portfolio optimization, the round-trip-time model validated against measured Azure latency, the country sample and cloud-region availability, the storage cost conversion, and the robustness of the supply and routing assumptions.
 
 ---
 
@@ -13,7 +15,7 @@ In Result 3, every AI workload parameter is determined from public traces and fo
 | Parameter (operator) | Adopted value | Data source | Suppl. section |
 |---|---|---|---|
 | $\lambda_{\mathrm{inf}}(t)$ — AI inference share (drives the P2/P3 shape operators); $\lambda_{\mathrm{train}}(t)$ — training, flat baseload | $\lambda_{\mathrm{inf}}$ 0.130 / 0.308 / 0.560; $\lambda_{\mathrm{train}}$ 0.070 / 0.132 / 0.140 (2025 / 2030 / 2050) | Energy-based $\lambda_{\mathrm{AI}}$: Gartner, IEA-4E/EDNA, IEA (Energy and AI 2025); inference/training split: Google/Patterson 2022, IEA-4E/EDNA, EPRI | S1 |
-| $\mu$, $\sigma$ — P2 sharpening of the intraday peak | 18.0 h, 3.8 h | BurstGPT v2.0 (10.1 M requests / 335 days) | S2 |
+| $\mu$, $\sigma$ — P2 sharpening of the intraday peak | 18.0 h, 3.8 h | BurstGPT v2.0 (10.1 M requests / 235 observed days) | S2 |
 | 24-hour shape — P2_emp (no Gaussian assumption) | empirical token-share vector | BurstGPT v2.0 | S2.8 |
 | $\gamma_{\mathrm{op}}$ — P3 burst amplification | 4.84 = (9.31 − 1) / 1.716 | BurstGPT hourly-aggregated P99/mean (9.31) ÷ Cloudflare $d_{\mathrm{burst}}$/mean (1.716, 104 countries) | S2, S3 |
 | $\alpha_{\mathrm{batch}}$ / $\alpha_{\mathrm{shaped}}$ — Mix weights | 0.25 / 0.75 (flat batch processing / smoothed intraday-shaped inference; event bursts are isolated in P3 and not folded into Mix) | Carbon Responder (Xing et al. 2023, Meta), adapted to LLM serving | S5 |
@@ -105,7 +107,7 @@ We use the public BurstGPT v2.0 trace (Wang et al. 2024, arXiv — 2401.17644). 
 | Window 1 | 1,404,294 | ~61 days | First trace window |
 | Window 2 | 3,784,213 | ~63 days | Second window |
 | Window 3 | 4,956,058 | ~111 days | Third (longest) window |
-| Total | 10,144,565 | ~335 days | Pooled fit |
+| Total | 10,144,565 | ~235 observed days | Pooled fit |
 
 Timestamps are given in seconds from 00:00 on day 1 and are calibrated to the user's local time zone (per the BurstGPT v2.0 documentation), so the hour-of-day directly indexes the user's local hour.
 
@@ -385,7 +387,7 @@ A full multi-factor Monte Carlo (jointly sampling $\lambda$, $\mu$, $\sigma$, $\
 
 ## Supplementary Section S8 — Country-level domestic mismatch table
 
-Under the equal-energy domestic accounting of Result 1 (Methods 4.1–4.2), Table S17 reports for each of the 104 sampled countries — the annual hourly wind-and-solar matching gap $U_c$ (i.e. the annual uncovered-demand share; its identities with the 24/7 CFE score, temporal self-sufficiency, load match index and overlap coefficient are given in S21), the peak local hours of demand and supply and their phase lag $\Delta h_c$, continuous-gap-segment statistics (median, 95th percentile, maximum segment length, hours), the maximum hourly uncovered intensity relative to mean demand, and the intraday spectral concentration of demand and supply. The complete country-by-country table is provided as Table S17.
+Under the equal-energy domestic accounting of Result 1 (Methods 4.1–4.2), Supplementary Data 1 reports for each of the 104 sampled countries the annual hourly wind-and-solar matching gap $U_c$ (i.e. the annual uncovered-demand share; its identities with the 24/7 CFE score, temporal self-sufficiency, load match index and overlap coefficient are given in S21), the peak local hours of demand and supply and their phase lag $\Delta h_c$, continuous-gap-segment statistics (median, 95th percentile and maximum segment length, hours), the maximum hourly uncovered intensity relative to mean demand, and the intraday spectral concentration of demand and supply. The country-by-country data are supplied separately as Supplementary Data 1.
 
 ---
 
@@ -408,9 +410,9 @@ with NOCT = 45 °C and $\gamma$ = −0.0035 $^{\circ}\mathrm{C}^{-1}$. Wind capa
 
 Three lines of evidence delimit the realism of the constructed factors. First, equal-energy normalization makes the results insensitive to level — demand and supply are each rescaled to the same annual total (Methods 4.1), so any residual mismatch reflects only differences in temporal shape, not the absolute level of the capacity factors. Sweeping the wind ×1.2 correction between 1.0 and 1.4 changes only the absolute level of the wind capacity factor, not its temporal shape, so the portfolio results are essentially unchanged (Methods 4.6). Second, coverage is not a binding choice — lowering the capacity coverage of the 3° grid representative stations from the default ~91 % to ~80 % or raising it to ~96 % shifts the global-reach median uncovered share by less than 0.5 pp (Methods 4.6). Third, the methodology is well established — the reanalysis-to-capacity-factor chain (PVWatts/GSEE solar PV model, IEC wind power curve on ERA5) is the same validation approach used by Pfenninger & Staffell (2016) and Tong et al. (2021), and the resulting national mean capacity factors fall within the published ranges for utility-scale solar PV (~10–25 %) and onshore wind (~20–45 %) reported by IRENA and the IEA.
 
-We further validate the modelled capacity factors directly against measured hourly generation, at the level of timing rather than annual mean. Two countries with open, hourly measured generation and representing distinct regimes were chosen — Germany (SMARD / Bundesnetzagentur; continental, solar and onshore wind) and Great Britain (Elexon / BMRS; maritime, offshore-wind-dominated) — and over the paper's own window (2 May 2025 to 1 May 2026) their measured hourly solar/wind generation was aligned hour-by-hour with our modelled national capacity factors (each normalised to unit mean, so that only timing is compared), yielding the hourly correlation, diurnal-profile correlation, peak-hour offset and seasonal correlation of Table S18. For solar, the hourly correlation is 0.94 in both countries, the diurnal-profile correlation 0.96, the peak-hour offset ≤ 1 h and the seasonal correlation 0.99; for wind, the hourly correlation reaches 0.94 in offshore-dominated Great Britain and is 0.68 in onshore, complex-terrain Germany (a known limitation of reanalysis for onshore-wind sub-daily variability), while its diurnal and seasonal structure still correlate at 0.91 and 0.95. The phase structure on which this study depends — sunset timing, diurnal shape and seasonality — is thus directly supported by measured generation; wind–solar complementarity and continuous-deficit duration are built on these validated timing features rather than on annual-mean energy.
+We further validate the modelled capacity factors directly against measured hourly generation, at the level of timing rather than annual mean. Two countries with open, hourly measured generation and representing distinct regimes were chosen — Germany (SMARD / Bundesnetzagentur; continental, solar and onshore wind) and Great Britain (Elexon / BMRS; maritime, offshore-wind-dominated) — and over the paper's own window (2 May 2025 to 1 May 2026) their measured hourly solar/wind generation was aligned hour-by-hour with our modelled national capacity factors (each normalised to unit mean, so that only timing is compared), yielding the hourly correlation, diurnal-profile correlation, peak-hour offset and seasonal correlation of Table S17. For solar, the hourly correlation is 0.94 in both countries, the diurnal-profile correlation 0.96, the peak-hour offset ≤ 1 h and the seasonal correlation 0.99; for wind, the hourly correlation reaches 0.94 in offshore-dominated Great Britain and is 0.68 in onshore, complex-terrain Germany (a known limitation of reanalysis for onshore-wind sub-daily variability), while its diurnal and seasonal structure still correlate at 0.91 and 0.95. The phase structure on which this study depends — sunset timing, diurnal shape and seasonality — is thus directly supported by measured generation; wind–solar complementarity and continuous-deficit duration are built on these validated timing features rather than on annual-mean energy.
 
-**Table S18. Timing validation of the modelled capacity factors against measured hourly generation (2 May 2025 – 1 May 2026, shapes normalised to unit mean).**
+**Table S17. Timing validation of the modelled capacity factors against measured hourly generation (2 May 2025 – 1 May 2026, shapes normalised to unit mean).**
 
 | Country · tech | Measured source | Hourly r | Diurnal r | Peak-hour offset | Seasonal r |
 |---|---|---|---|---|---|
@@ -435,7 +437,7 @@ where $u_t$ is the per-hour uncovered slack and $\sum_t u_t$ the total uncovered
 
 $$ \max_{w\ge 0,\ 0\le \mathrm{cov}\le r_c}\ \sum_t \mathrm{cov}_t \quad\text{s.t.}\quad \mathrm{cov}_t\le \sum_{i\in\mathcal R_c(\tau)} w_i\,\hat s_i(t),\qquad \sum_t\sum_i w_i\,\hat s_i(t)=\sum_t r_c(t). \tag{S10b} $$
 
-Both are standard linear programs. The domestic baseline falls from 41.8% to 40.8% and the global routed floor from 12.7% to 12.4%, each only about 1 percentage point lower (per-country median difference < 0.2 pp), so the reported residuals are robust to the objective and are conservative upper bounds on the geometric floor. $\Phi_c$ contains only the stations of c and aggregates nothing across borders, so the portfolio step involves no cross-border transmission or its efficiency losses; the geographic lever is provided by cross-longitude routing of the compute load (rather than by supply aggregation), as set out in the two-pass procedure and round-trip-time gating below (S11).
+Both are standard linear programs. The domestic baseline falls from 41.8% to 40.8% and the global routed floor from 12.7% to 12.4%, each only about 1 percentage point lower (per-country median difference < 0.2 pp), so the reported residuals are robust to the objective and are conservative upper bounds on the geometric floor. The headline domestic gap reported throughout the paper — the 40.1% equal-energy installed-capacity mix of Result 1 — lies within 2 percentage points of both the NNLS portfolio baseline (41.8%) and this LP floor (40.8%); the three supply constructions therefore agree, and we adopt the installed-capacity mix as the single reported caliber, with the station-level portfolio used only where the routing optimizer must select complementary stations. $\Phi_c$ contains only the stations of c and aggregates nothing across borders, so the portfolio step involves no cross-border transmission or its efficiency losses; the geographic lever is provided by cross-longitude routing of the compute load (rather than by supply aggregation), as set out in the two-pass procedure and round-trip-time gating below (S11).
 
 Two basis sets are used. Result 1–2 use a domestic station-level basis (461 representative stations assigned to their home country, each country using only its own stations), letting the optimizer select the specific stations most complementary to domestic demand. Result 3 (the AI-workload-shape scenario) uses a country × technology capacity-weighted basis (105 countries × {solar PV, wind} = 210 basis functions) — re-solving the station-level basis over the full 6 operators × multiple years × 6 latitude tolerances × 6 routable fractions × 104 countries (about 4 × $10^{4}$ NNLS problems of size 8,760 × N) is computationally infeasible. Cross-checking with the station-level basis at the domestic and global corners of $\tau$×$\varphi$ reproduces the same lever ordering and same-order-of-magnitude costs, so the conclusions of Result 3 do not depend on this basis choice.
 
@@ -801,17 +803,17 @@ where the firm full-system cost per MWh comprises generation, firming storage an
 
 **Relationship between the two.** \(U\) and \(\Pi\) are two readings of the same physical quantity—the phase mismatch between demand and clean supply at the hourly scale. The better the phase alignment, the lower \(U\), the fewer continuous gap segments firming storage must fill, and the closer \(\Pi\) falls to zero; the phase-unalignable residual turns, through firming storage and ancillary services, into the premium. The paper therefore takes no absolute figure of energy, capacity or money as its endpoint, working throughout on this pair of observable, cross-checkable metrics rooted in the established literature.
 
-**Concept–reference map.**
+**Table S30. Concept–reference map for the two dimensionless temporal-mismatch measures.**
 
 | Concept | Relation to metric | Source (main-text reference number) |
 |---|---|---|
-| 24/7 CFE matching score | \(=1-U\) | Google 2020 (8); Riepin & Brown 2024 (9) |
-| Temporal self-sufficiency rate (PV self-consumption) | \(=1-U\) | Luthander et al. 2015 (10) |
-| Net-zero-energy-building load match index | \(=1-U\) | Sartori et al. 2012 (11) |
-| Total-variation distance / overlap coefficient | \(U=\mathrm{TV}\), \(1-U=\mathrm{OVL}\) | Weitzman 1970 (12) |
-| System LCOE / integration cost | \(\Pi=\) integration cost / generation cost | Ueckerdt et al. 2013 (13); Hirth et al. 2015 (14) |
-| Bare LCOE understates intermittent sources | Rationale for \(\Pi\) | Joskow 2011 (15) |
-| Economics of reliable wind-and-solar delivery | Established calibration of \(\Pi\)'s magnitude | IRENA 2026 (16) |
+| 24/7 CFE matching score | \(=1-U\) | Google 2020; Riepin & Brown 2024 (3,10) |
+| Temporal self-sufficiency rate (PV self-consumption) | \(=1-U\) | Luthander et al. 2015 (27) |
+| Net-zero-energy-building load match index | \(=1-U\) | Sartori et al. 2012 (28) |
+| Total-variation distance / overlap coefficient | \(U=\mathrm{TV}\), \(1-U=\mathrm{OVL}\) | Weitzman 1970 (29) |
+| System LCOE / integration cost | \(\Pi=\) integration cost / generation cost | Ueckerdt et al. 2013; Hirth et al. 2015 (8,9) |
+| Bare LCOE understates intermittent sources | Rationale for \(\Pi\) | Joskow 2011 (44) |
+| Economics of reliable wind-and-solar delivery | Established calibration of \(\Pi\)'s magnitude | IRENA 2026 (45) |
 
 **References cited in this section.**
 

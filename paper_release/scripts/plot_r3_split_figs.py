@@ -185,13 +185,13 @@ def panel_zerosum(ax, dn, df, fs=11.0):
 
 
 def panel_shapes(ax, df, fs=11.0):
-    """(c) Dumbbell — each AI demand shape's 104-country mean uncovered share at
+    """(c) Dumbbell — each AI demand shape's 104-country median uncovered share at
     national reach (50 ms) vs global reach (500 ms). The six shapes line up in two
-    tight columns (shape barely matters) and every shape drops ~16 pp from national
+    tight columns (shape barely matters) and every shape drops ~19 pp from national
     to global (the routing lever dominates). phi = 100%."""
     order = ["P0_baseline", "P1_flatten", "P2_emp", "P2_sharpen", "P3_burst", "P_mix"]
-    loc = {o: R3L.unc(df, 2030, o, 1.0, 50) for o in order}
-    glo = {o: R3L.unc(df, 2030, o, 1.0, 500) for o in order}
+    loc = {o: R3L.unc(df, 2030, o, 1.0, 50, agg="median") for o in order}
+    glo = {o: R3L.unc(df, 2030, o, 1.0, 500, agg="median") for o in order}
     ys = list(range(len(order)))[::-1]                 # first shape at the top
     C_NAT, C_GLO = "#D97706", "#0F766E"
     nat, gl = list(loc.values()), list(glo.values())
@@ -260,12 +260,12 @@ def panel_heatmap(fig, cell, df, op="P_mix", fs=11.0):
     2030). Same axes as the mechanism figure's reach panel, full size."""
     sub = cell.subgridspec(1, 2, width_ratios=[1.0, 0.05], wspace=0.06)
     ax = fig.add_subplot(sub[0, 0])
-    allv = [R3L.unc(df, 2030, op, p, t) for p in R3L.PHI_ROWS for t in R3L.TAU]
+    allv = [R3L.unc(df, 2030, op, p, t, agg="median") for p in R3L.PHI_ROWS for t in R3L.TAU]
     vmax = float(np.ceil(np.nanmax(allv) / 5) * 5)
     norm = mpl.colors.Normalize(0, vmax)
     for i, p in enumerate(R3L.PHI_ROWS):
         for j, t in enumerate(R3L.TAU):
-            v = R3L.unc(df, 2030, op, p, t); fc = CMAP_PA(norm(v))
+            v = R3L.unc(df, 2030, op, p, t, agg="median"); fc = CMAP_PA(norm(v))
             ax.add_patch(mpatches.FancyBboxPatch(
                 (j - 0.46, i - 0.46), 0.92, 0.92,
                 boxstyle="round,pad=0,rounding_size=0.14", facecolor=fc,

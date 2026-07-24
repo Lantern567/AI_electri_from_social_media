@@ -1,6 +1,6 @@
 # Paper release
 
-This directory is the reproducibility package for **Earth’s rotation and human rhythms cap hourly wind-and-solar matching for interactive computing**.
+This directory is the reproducibility package for **Chasing wind and sun narrows but does not close the data-centre clean-power gap**.
 
 ## Contents
 
@@ -8,10 +8,20 @@ This directory is the reproducibility package for **Earth’s rotation and human
 - `data/station_expanded/`: station-expanded routing, waveform and robustness outputs.
 - `figures/`: frozen PNG and PDF outputs for main and supplementary figures.
 - `scripts/`: complete acquisition, preprocessing, fitting, analysis, validation, dispatch and plotting code used by the paper.
-- `manuscript/`: matching main-text and Supplementary Information snapshots.
+- `manuscript/`: authoritative submission DOCX files plus readable Markdown snapshots.
 - `REPRODUCIBILITY_INDEX.md`: result-to-script/input/output crosswalk.
+- `SUBMISSION_MANIFEST.md`: SHA-256 checksums for the authoritative submission files and Supplementary Data.
+- `data/Supplementary_Data_1_country_level_domestic_mismatch.csv`: the exact machine-readable country-level table supplied with the submission.
+- `data/Supplementary_Data_1_README.md`: column definitions and integrity hash for Supplementary Data 1.
 
-## Recommended run order
+## Two reproducibility levels
+
+The repository supports two distinct workflows.
+
+1. **Exact inspection of the submitted results.** Use the committed CSV/JSON files and frozen figures. These files are the immutable inputs and outputs used for the submitted version and do not require reacquiring provider data.
+2. **Full reconstruction from public sources.** Run the acquisition and analysis pipeline below. This requires network access, the third-party source data and API credentials described in the manuscript, and the same local data-directory layout expected by the acquisition scripts. Provider revisions can prevent byte-for-byte reproduction of downloaded raw data.
+
+## Full reconstruction order
 
 Run from the repository root after `uv sync`.
 
@@ -24,7 +34,7 @@ Run from the repository root after `uv sync`.
 7. Run the full-system cost and storage workflow with `layer_fullsystem_cost.py`, `storage_dispatch_lp.py`, `run_dispatch_cost_full.py`, and the related decomposition/sensitivity scripts.
 8. Regenerate figures with the corresponding `plot_*.py` scripts.
 
-Committed CSV/JSON files and figures are frozen submission outputs. API-backed acquisition may not reproduce byte-for-byte if providers revise history; use committed source data for exact figure reproduction.
+Committed CSV/JSON files and figures are frozen submission outputs. API-backed acquisition may not reproduce byte-for-byte if providers revise history; use committed source data for exact result inspection.
 
 `scripts/fullsystem_cost_params.py` is the shared frozen parameter module used by the full-system cost and dispatch scripts.
 
@@ -33,3 +43,7 @@ See `CODE_INVENTORY.md` for the complete stage-by-stage code inventory. Computat
 ## Provenance note
 
 Supplementary Table S0 records parameter, adopted value, data source and Supplementary section. Script, input and frozen-output provenance is maintained in `REPRODUCIBILITY_INDEX.md`, rather than represented as columns in Table S0.
+
+## Version and licences
+
+The submitted snapshot is tagged `v1.1.0-submission`. Code is licensed under MIT. Newly generated derived data are licensed under CC BY 4.0 as described in the repository-level `DATA_LICENSE.md`; third-party inputs retain their original terms.

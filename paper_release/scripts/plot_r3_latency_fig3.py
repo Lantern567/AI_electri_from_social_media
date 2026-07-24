@@ -49,9 +49,12 @@ def load():
     return pd.read_csv(DATA / "r3_waveform_cost_table.csv"), pd.read_csv(DATA / "r1_diurnal_profiles.csv")
 
 
-def unc(df, year, op, phi, tau):
+def unc(df, year, op, phi, tau, agg="mean"):
     r = df[(df.year == year) & (df.perturbation == op) & (df.phi == phi) & (df.tau_ms == tau)]
-    return float(r["uncovered_share"].mean()) * 100 if len(r) else np.nan
+    if not len(r):
+        return np.nan
+    v = r["uncovered_share"].median() if agg == "median" else r["uncovered_share"].mean()
+    return float(v) * 100
 
 
 # panel (a)

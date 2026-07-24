@@ -33,6 +33,7 @@ All files below are in `scripts/`. Together they cover the paper's computational
 - `analyze_cfe_r3_compute_migration.py`
 - `analyze_cfe_r3_latency_routable.py`
 - `analyze_cfe_r3_waveform_cost.py`
+- `analyze_cfe_r2_longitude_counterfactual.py`
 
 ## 4. Cost, storage and decomposition
 
@@ -53,6 +54,7 @@ All files below are in `scripts/`. Together they cover the paper's computational
 - `analyze_cfe_r2_allocation_sensitivity.py`
 - `analyze_cfe_r3_cost_sensitivity.py`
 - `analyze_cfe_s17_computeintensity.py`
+- `analyze_cfe_interannual_robustness.py`
 - `run_r3_latency_sensitivity.py`
 - `run_r3_sensitivity_sweep.py`
 - `validate_supply_cf_measured.py`

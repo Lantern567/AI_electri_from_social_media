@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this code or the accompanying derived data, please cite the manuscript and this repository."
+title: "Chasing wind and sun narrows but does not close the data-centre clean-power gap"
+type: software
+version: 1.1.0
+date-released: 2026-07-24
+repository-code: "https://github.com/Lantern567/earth-rotation-cfe"
+license: MIT
+authors:
+  - family-names: Zhang
+    given-names: Haoran
